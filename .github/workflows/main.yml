@@ -1,1 +1,19 @@
+name: HTTP
 
+on:
+  push:
+    branches: ["Main"] 
+jobs:
+  cd-prod:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+      
+    - name: Deploy Docker 
+    env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: |
