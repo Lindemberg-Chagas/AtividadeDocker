@@ -1,3 +1,14 @@
-FROM httpd:2.4
-COPY index.html /usr/local/apache2/htdocs/
-CMD bash
+FROM ubunt:latest
+
+RUN apt-get update && apt-get upgrade -y
+
+RUN apt-get install nginx -y
+
+COPY index.html /var/www/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+
+
+
